@@ -1,25 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import FeatureDisplay from './FeatureDisplay';
+import isFeatureOn from './isFeatureOn';
+import FeatureFlagContext from './FeatureFlagContext';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FeatureFlagContext.Provider value={isFeatureOn}>
+      <div className="App">
+        <header className="App-header">
+          <FeatureDisplay />
+        </header>
+      </div>
+    </FeatureFlagContext.Provider>
   );
 }
 
