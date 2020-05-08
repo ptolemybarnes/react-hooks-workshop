@@ -1,18 +1,24 @@
-import React from 'react';
-import FeatureDisplay from './FeatureDisplay';
-import isFeatureOn from './isFeatureOn';
-import FeatureFlagContext from './FeatureFlagContext';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 const App = () => {
+  const [name, setName] = useState('')
+  const [weight, setWeight] = useState('?')
+  const [myName, setMyName] = useState('')
+
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
+      .then(response => response.json())
+      .then(({ weight }) => setWeight(weight))
+  }, [name]);
+
   return (
-    <FeatureFlagContext.Provider value={isFeatureOn}>
-      <div className="App">
-        <header className="App-header">
-          <FeatureDisplay />
-        </header>
-      </div>
-    </FeatureFlagContext.Provider>
+    <div className="App">
+      <p> Hello Trainer { myName }</p>
+      <input type='text' onChange={event => setMyName(event.target.value)} />
+      <p>{ name } weighs { weight }</p>
+      <input type='text' onChange={event => setName(event.target.value)} />
+    </div>
   );
 }
 
