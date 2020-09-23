@@ -6,7 +6,6 @@
   - useEffect
   - useContext
 4. Regroup and present
-5. Pick DemandChecker components to refactor
 
 QUESTIONS
 =========
